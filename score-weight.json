@@ -1,0 +1,38 @@
+{
+  "Node": {
+    "weight": 10,
+    "suitesWeights": {
+      "#constructor": 10,
+      "#appendChild": 25,
+      "#removeChild": 25,
+      "#remove": 10,
+      "#swapWithParent": 30
+    }
+  },
+  "MaxHeap": {
+    "weight": 30,
+    "suitesWeights": {
+      "#constructor": 10,
+      "#push": 10,
+      "#insertNode": 10,
+      "#shiftNodeUp": 30,
+      "#clear": 5,
+      "#pop": 10,
+      "#detachRoot": 10,
+      "#restoreRootFromLastInsertedNode": 10,
+      "#shiftNodeDown": 30,
+      "#size": 5,
+      "#isEmpty": 5
+    }
+  },
+  "PriorityQueue": {
+    "weight": 60,
+    "suitesWeights": {
+      "#constructor": 1,
+      "#push": 10,
+      "#shift": 50,
+      "#size": 1,
+      "#isEmpty": 1
+    }
+  }
+}
