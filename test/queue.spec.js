@@ -48,23 +48,22 @@ describe('PriorityQueue', () => {
 
 		beforeEach(() => {
 			q = new Queue();
-			q.push(0, 1);
 		});
 
 		it('calls heap.pop', () => {
-			sinon.spy(q.heap, 'pop');
+			q.push(0, 1);
 
+			sinon.spy(q.heap, 'pop');
 			q.shift();
 			expect(q.heap.pop).to.have.been.called;
 		});
 
 		it('returns value of removed node', () => {
+			q.push(0, 1);
 			expect(q.shift()).to.equal(0);
 		});
 
 		it('throws an error if queue is empty', () => {
-			q.shift();
-
 			expect(() => {
 				q.shift()
 			}).to.throw();
@@ -89,7 +88,7 @@ describe('PriorityQueue', () => {
 		});
 
 		it('should handle items with same priority (return in the same order this items have been added)', () => {
-			const expectedData = [3, 5, 1, 0, 2];
+			const expectedData = [3, 5, 1, 0, 4, 2];
 
 			q.push(0, 10);
 			q.push(1, 15);
