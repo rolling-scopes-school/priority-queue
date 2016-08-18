@@ -289,8 +289,8 @@ describe('MaxHeap', () => {
 
 			h.detachRoot();
 
-			expect(h.parentNodes[0].data).to.equal(15);
-			expect(h.parentNodes[0].priority).to.equal(42);
+			expect(h.parentNodes[0].data).to.equal(42);
+			expect(h.parentNodes[0].priority).to.equal(15);
 		});
 
 		it('returns detached root', () => {
