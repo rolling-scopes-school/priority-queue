@@ -338,6 +338,27 @@ describe('MaxHeap', () => {
 			expect(h.parentNodes[0]).to.equal(lastInsertedNode);
 			expect(h.parentNodes[1]).to.equal(left);
 		});
+
+		it('should maintain correct order of parentNodes when right child is moved', () => {
+			h.push(14,14);
+			h.push(13,13);
+			h.push(16,16);
+			h.push(12,12);
+
+/**
+           32                             12
+          /  \                           /  \
+        15    16   - restoreRoot ->    15   16
+       /  \  /  \                    /  \  /
+     14  13  0   12                14  13  0
+ **/
+
+			const detached = h.detachRoot();
+			h.restoreRootFromLastInsertedNode(detached);
+
+			expect(h.parentNodes.map(n=>n.priority)).to.deep.equal([16,14,13,0]);
+		});
+
 	});
 
 	describe('#shiftNodeDown', () => {
