@@ -424,18 +424,21 @@ describe('MaxHeap', () => {
             h.root.right.appendChild(new Node(11, 11));
             h.root.right.appendChild(new Node(6, 6));
 
+            h.parentNodes = [h.root.left.left, h.root.left.right, h.root.right.left, h.root.right.right];
+
 /**
             1                             20
           /  \                           /  \
         10    20   - shiftDown ->      10   11
        /  \  /  \                    /  \  /  \
-     5    8 11  6                   5   8 0   6
+     5    8 11  6                   5   8 1   6
  **/
 
             h.shiftNodeDown(h.root);
 
             expect(h.root).to.equal(newRoot);
             expect(h.root.right.left).to.equal(newDeepest);
+            expect(h.parentNodes.map(n=>n.priority)).to.deep.equal([5,8,1,6]);
         });
 
 		it('calls Node.swapWithParent', () => {
