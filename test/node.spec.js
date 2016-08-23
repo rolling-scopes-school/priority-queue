@@ -131,6 +131,20 @@ describe('Node', () => {
 			expect(parent.parent).to.equal(child);
 		});
 
+		it('updates parent.parent.parent', () => {
+			const root = new Node(8, 8);
+			const child = new Node(4, 4);
+			const grandson = new Node(2, 2);
+
+			root.appendChild(child);
+			child.appendChild(grandson);
+
+			grandson.swapWithParent();
+
+			expect(child.parent).to.equal(grandson);
+			expect(grandson.parent).to.equal(root);
+		});
+
 		it('updates child.parent', () => {
 			const parentOfParent = new Node(100, 500);
 			const parent = new Node(15, 42);
