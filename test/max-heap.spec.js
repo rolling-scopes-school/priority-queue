@@ -410,6 +410,34 @@ describe('MaxHeap', () => {
 			expect(h.parentNodes[2]).to.equal(correctParentNodesOrderAfterShiftUp[2]);
 		});
 
+        it('shifts node down in right direction', () => {
+            h = new MaxHeap();
+
+            let newRoot = new Node(20, 20);
+            let newDeepest = new Node(1, 1);
+
+            h.root = newDeepest;
+            h.root.appendChild(new Node(10, 10));
+            h.root.appendChild(newRoot);
+            h.root.left.appendChild(new Node(5, 5));
+            h.root.left.appendChild(new Node(8, 8));
+            h.root.right.appendChild(new Node(11, 11));
+            h.root.right.appendChild(new Node(6, 6));
+
+/**
+            1                             20
+          /  \                           /  \
+        10    20   - shiftDown ->      10   11
+       /  \  /  \                    /  \  /  \
+     5    8 11  6                   5   8 0   6
+ **/
+
+            h.shiftNodeDown(h.root);
+
+            expect(h.root).to.equal(newRoot);
+            expect(h.root.right.left).to.equal(newDeepest);
+        });
+
 		it('calls Node.swapWithParent', () => {
 			const firstNodeToSwapWith = h.root.left;
 			sinon.spy(firstNodeToSwapWith, 'swapWithParent');
