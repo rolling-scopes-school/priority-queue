@@ -1,6 +1,14 @@
-### Priority queue task
+## Priority queue task
 
 :warning: DO NOT SUBMIT PRS TO THIS REPO :warning:
+
+### Task
+
+The task should be implemeted using [tdd](https://en.wikipedia.org/wiki/Test-driven_development) 
+
+All requirements are defined in the tests.
+
+P S A partial solution is also a solution. The task is very long )
 
 ### Run tests
 ```sh
