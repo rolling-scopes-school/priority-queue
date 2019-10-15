@@ -6,6 +6,8 @@ class Node {
 		this.left = null;
 		this.right = null;
 		this.self = Symbol();
+        this.selfRef = this;
+        this.parentRef = null;
 	}
 
 	throwError(error) {
@@ -17,12 +19,15 @@ class Node {
 			return 
 		}	
 		this.left !== null ? this.right = node : this.left = node;
+      
 		node.parent = this.self;
-		
+        node.parentRef = this.selfRef;
 	}
 
 	removeChild(node) {
-		let scenary = (child, left, right) => {
+      //check if it was called from this.remove()
+        
+          let scenary = (child, left, right) => {
           let check = direction => {
           let result = (direction === null ||direction.self != child.self) ? false : true;
           return result;
@@ -30,10 +35,12 @@ class Node {
 			if (check(left)) {
 				this.left = null;
 				child.parent = null;
+				child.parentRef = null;
                 return left
 			} else if(check(right)) {
 				this.right = null;
 				child.parent = null;
+				child.parentRef = null;
 			}
 		}
         
@@ -46,16 +53,22 @@ class Node {
 		} else {
 			this.throwError('should be leaf of parent')
 		}
-							 
+       					 
 	}
 
-	remove() {
 
+	///need to think about it
+	remove() { 
+      //let removeBounded = this.removeChild.bind(this.p)
+	  //this.parent ? removeBounded(this.s) : '';
+	  this.parent ? this.parentRef.removeChild(this.selfRef) : '';
 	}
 
 	swapWithParent() {
 		
 	}
 }
+
+
 
 module.exports = Node;
