@@ -4,7 +4,7 @@
   "description": "",
   "scripts": {
     "test": "mocha -r ./test/setup-mocha.js",
-		"start": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "author": "",
   "license": "ISC",
