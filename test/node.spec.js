@@ -1,7 +1,7 @@
 const Node = require('../src/node');
 
 describe.only('Node', () => {
-	describe.only('#constructor', () => {
+	describe('#constructor', () => {
 		const node = new Node(42, 15);
 
 		it('assigns passed data and priority to this', () => {
@@ -16,7 +16,7 @@ describe.only('Node', () => {
 		});
 	});
 
-	describe('#appendChild', () => {
+	describe.only('#appendChild', () => {
 		let parent, leftChild, rightChild;
 
 		beforeEach(() => {
