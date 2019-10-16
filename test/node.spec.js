@@ -1,7 +1,7 @@
 const Node = require('../src/node');
 
-describe('Node', () => {
-	describe('#constructor', () => {
+describe.only('Node', () => {
+	describe.only('#constructor', () => {
 		const node = new Node(42, 15);
 
 		it('assigns passed data and priority to this', () => {
