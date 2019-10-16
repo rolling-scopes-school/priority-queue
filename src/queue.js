@@ -5,21 +5,27 @@ class PriorityQueue {
 		this.maxSize = maxSize;
 		this.heap = new MaxHeap();
 	}
-
-	push(data, priority) {
-
+	throwError(error) {
+		throw new Error(error)
 	}
 
-	shift() {
+	push(data, priority) {
+		this.maxSize === this.heap.length ? this.throwError('Sorry, maxHeap violation') : this.heap.push(data, priority);
+	}
 
+	shift() {	
+		return this.heap.pop();
 	}
 
 	size() {
-
+		return this.heap.length;
 	}
 
 	isEmpty() {
-		
+		let res;
+		//this.heap.memory.length >= 1
+		this.heap.memory.length < 2 ? res = true : res = false;
+		return res;
 	}
 }
 

@@ -14,7 +14,19 @@ class MaxHeap {
 	}
 
 	pop() {
-		
+		let result;
+		let scenary = () => {			
+			let poped = this.memory.pop();			
+			result = poped.data;
+			//console.log(result)
+			//console.log('==============')
+			let detached = this.detachRoot();
+			this.restoreRootFromLastInsertedNode(detached);
+			this.shiftNodeDown(this.root);
+			return result;
+		}
+		this.memory.length > 1 ? result = scenary() : '';	
+		return result;
 	}
 
 	detachRoot() {
@@ -25,26 +37,45 @@ class MaxHeap {
 		
 	}
 
+	getMemS() {
+		return this.memory.length;
+	}
 	size() {
-		
+		//console.log(this.getMemS()-1)
+		//console.log('==============')
+		//let l = this.memory.length;
+		//let res = l - 1;
+		//console.log(res)
+		//return res; 
+		return this.getMemS()-1;
 	}
 
 	isEmpty() {
-		
+		let res;
+		this.getMemS() === 1 ? res = true : res = false;
+		return res;
 	}
 
 	clear() {
+		this.memory = [null];	
 		this.root = null;
 		this.parentNodes = [];
 	}
 
-	insertNode(node) {
-		//this.root ? this.memory.push(node) : this.root = node;
-		if (this.root) {
-			this.memory.push(node);			
+	insertNode(node) {			
+		if (this.root) {			
+			this.memory.push(node);
+			this.parentNodes.push(node);			
+			let index = this.memory.length-1;
+			let parentIndex = Math.floor(index/2);
+			this.memory[index].parent = this.memory[parentIndex];
+			this.memory[parentIndex].left === null ? this.memory[parentIndex].left = node.selfRef : this.memory[parentIndex].right = node.selfRef;
+	
 		} else {
-			this.root = node;
-			this.parentNodes = node;
+			this.memory.push(node);
+			this.root = this.memory[1];
+			this.parentNodes.push(node);
+			//this.parentNodes = node;
 		}
 	}
 
