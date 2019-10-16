@@ -16,7 +16,7 @@ describe.only('Node', () => {
 		});
 	});
 
-	describe.only('#appendChild', () => {
+	describe('#appendChild', () => {
 		let parent, leftChild, rightChild;
 
 		beforeEach(() => {
