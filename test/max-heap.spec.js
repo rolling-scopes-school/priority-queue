@@ -1,7 +1,7 @@
 const Node = require('../src/node');
 const MaxHeap = require('../src/max-heap');
 
-describe.only('MaxHeap', () => {
+describe('MaxHeap', () => {
 	describe('#constructor', () => {
 		const h = new MaxHeap();
 
@@ -44,7 +44,7 @@ describe.only('MaxHeap', () => {
 		});
 	});
 
-	describe.only('#insertNode', () => {
+	describe('#insertNode', () => {
 		let h;
 
 		beforeEach(() => {
@@ -123,7 +123,7 @@ describe.only('MaxHeap', () => {
 			expect(h.parentNodes[1]).to.equal(nodes[4]);
 			expect(h.parentNodes[2]).to.equal(nodes[5]);
 			expect(h.parentNodes[3]).to.equal(nodes[6]);
-			
+		
 		});
 	});
 
