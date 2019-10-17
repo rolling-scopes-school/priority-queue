@@ -1,6 +1,6 @@
 const Node = require('../src/node');
 
-describe.only('Node', () => {
+describe('Node', () => {
 	describe('#constructor', () => {
 		const node = new Node(42, 15);
 
@@ -112,7 +112,7 @@ describe.only('Node', () => {
 		});
 	});
 
-	describe.only('#swapWithParent', () => {
+	describe('#swapWithParent', () => {
 		it('does nothing if node does not have parent', () => {
 			const node = new Node(15, 42);
 
