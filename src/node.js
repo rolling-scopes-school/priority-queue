@@ -67,8 +67,7 @@ class Node {
 	remove() {
 		if (this.isEvenOneEqual(this.parent, null)) {
 			return
-		} else {	
-			//console.log(this.parent.removeChild(this.self))		
+		} else {					
 			this.parent.removeChild(this.self);
 		}
 	}
@@ -92,16 +91,7 @@ class Node {
 		if (this.isEvenOneEqual(this.parent, null)) {
 			return
 		} else { 
-			let son = this.self;   let dad = this.parent; let grand = this.parent.parent;
-			//let sonL = this.left;  let dadL = dad.left;   let grandL = grand.left;
-			//let sonR = this.right; let dadR = dad.right;  let grandR = grand.right;
-			//let sonRelationToDad = relation(son)(dad);
-			//let dadRelationToGrand = relation(dad)(son);
-
-			
-			 
-			
-			
+			let son = this.self;   let dad = this.parent; let grand = this.parent.parent;			
 			
 			//update parent.parent			
 			son.parent = grand;
@@ -131,31 +121,22 @@ class Node {
 			if (dad.right != null && !this.isEvenOneEqual(dad.right.identity, son.identity)) {				
 				dadR.parent = son;
 				son.right = dadR;							
-				dad.right = sonR;
-				
-				
+				dad.right = sonR;				
 			}
 			
-			//posBackUp.parent = dad;
+			
 			dad[position] = posBackUp;
 			if (dad[position] != null) {
 				dad[position].parent = dad;
 			}
 			
 			if (grand) {
-				let positionGrand = relation(dad)(grand);
-				//console.log(positionGrand);
-			
+				let positionGrand = relation(dad)(grand);			
 				if (grand[positionGrand] != null) {
 					grand[positionGrand] = son;				
 				}
 			
-			}
-			
-			
-			//console.log(grand);
-			//console.log('------');
-
+			}	
 
 		}
 	}
