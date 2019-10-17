@@ -7,6 +7,7 @@ class MaxHeap {
 		this.parentNodes = [];
 		this.memory = [];
 		this.size = this.memory.length - 1;	
+		this.empty = 0;
 	}
 
 	push(data, priority) {
@@ -47,28 +48,46 @@ class MaxHeap {
 	}
 
 	insertNode(node) {
-		if (!this.isEmpty()) {				
+		//let flag = false;
+		if (this.empty === 0) {				
 			this.root = node;
 			this.memory.push(null);
 			this.memory.push(this.root);
-			this.size = this.memory.length - 1;						
-		} else {				
-			this.memory.push(node);
 			this.parentNodes.push(node);
-			this.size = this.memory.length - 1;
+			//this.size = this.memory.length - 1;
+			this.empty++;										
+		} else {						
+			if (this.empty === 2) {
+				this.parentNodes.shift()
+			}	
+			this.memory.push(node);
+			this.parentNodes.push(node);			
+			this.empty++;
 			let index = this.memory.indexOf(node);
 			let parent = this.memory[Math.floor((index)/2)];
 			parent.appendChild(node);			
 		}
-		//console.log(this.parentNodes[1]);
+		/*
+		console.log('==================')
+		console.log(this.parentNodes[0])
+		console.log('==================')
+		console.log(this.parentNodes[2])
+		console.log('==================')
+		*/
 	}
 
 	shiftNodeUp(node) {
 		/*
-		while (node.parent != null || node.parent.data > node.data) {
-			node.swapWithParent();
-		};
+		if (node.parent.data) {
+			while (node.data > node.parent.data) {
+				node.swapWithParent();
+			}
+		}
 		*/
+		//console.log(node.parent)
+		
+		
+		
 	}
 
 	shiftNodeDown(node) {
