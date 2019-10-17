@@ -7,20 +7,39 @@ class PriorityQueue {
 		this.heap = new MaxHeap;
 	}
 
-	push(data, priority) {
+	push(data, priority) {		
+		if (this.heap.memory.length-1 === this.maxSize) {
+			throw new Error;		
+		}
 		this.heap.push(data, priority);
+		
 	}
 
 	shift() {
-		this.heap.pop();
+		if (this.heap.memory.length >= 2) {
+			this.heap.pop()
+			//this.heap.memory.length-1;
+			//console.log(this.heap.empty);
+			//this.heap.empty--;
+		} else {
+			throw new Error;
+		}
+		
 	}
 
 	size() {
-		return this.heap.size();
+		return this.heap.empty;
 	}
 
 	isEmpty() {
-		return this.heap.isEmpty();
+		//console.log(this.heap.memory)
+		//console.log(this.heap.empty);
+		if (this.heap.empty === 0) {
+			return true;
+		} else {
+			return false;
+		}
+		
 	}
 }
 

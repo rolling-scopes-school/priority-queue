@@ -5,8 +5,7 @@ class MaxHeap {
 	constructor() {
 		this.root = null;
 		this.parentNodes = [];
-		this.memory = [];
-		this.size = this.memory.length - 1;	
+		this.memory = [];		
 		this.empty = 0;
 	}
 
@@ -17,11 +16,13 @@ class MaxHeap {
 	}
 
 	pop() {
+		this.empty--;
 		if (this.root) {
 			this.detachRoot();						
 			this.restoreRootFromLastInsertedNode(this.detachRoot());
 			this.shiftNodeDown(this.root);
-			return this.root.data;
+			
+			//return this.root.data;
 		} else {
 			return
 		}
@@ -38,6 +39,7 @@ class MaxHeap {
 	}
 
 	size() {
+		console.log(this.empty);
 		return this.empty;
 	}
 
