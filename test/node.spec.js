@@ -112,7 +112,7 @@ describe.only('Node', () => {
 		});
 	});
 
-	describe('#swapWithParent', () => {
+	describe.only('#swapWithParent', () => {
 		it('does nothing if node does not have parent', () => {
 			const node = new Node(15, 42);
 

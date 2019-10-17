@@ -29,9 +29,11 @@ class Node {
 		if (!this.hasLeftNode()) {
 			this.left = node.self;
 			node.parent = this.self;
+			return
 		} else if (!this.hasRightNode()) {
 			this.right = node.self;
 			node.parent = this.self;
+			return
 		} else if (this.hasLeftNode() && this.hasRightNode()) {
 			return
 		}	else {
@@ -41,8 +43,7 @@ class Node {
 
 	removeChild(node) {	
 		
-		//check if even one of leaf is node
-		
+		//check if even one of leaf exist and is node		
 		if (this.left && this.right && !this.isEvenOneEqual(this.left.identity, 
 								this.right.identity, 
 								node.identity)) {
@@ -73,7 +74,90 @@ class Node {
 	}
 
 	swapWithParent() {
+
+		let relation = (doughter) => (mama) => {
+			let result;
+			if  (mama.left) {
+				this.isEvenOneEqual(doughter.identity, mama.left.identity) ? result = 'left' : '';
+			}
+			if (mama.right) {
+				this.isEvenOneEqual(doughter.identity, mama.right.identity) ? result = 'right' : '';
+			}
+			return result;
+		}
+
 		
+
+
+		if (this.isEvenOneEqual(this.parent, null)) {
+			return
+		} else { 
+			let son = this.self;   let dad = this.parent; let grand = this.parent.parent;
+			//let sonL = this.left;  let dadL = dad.left;   let grandL = grand.left;
+			//let sonR = this.right; let dadR = dad.right;  let grandR = grand.right;
+			//let sonRelationToDad = relation(son)(dad);
+			//let dadRelationToGrand = relation(dad)(son);
+
+			
+			 
+			
+			
+			
+			//update parent.parent			
+			son.parent = grand;
+			dad.parent = son;
+			
+			
+
+			//updates parent.child.parent
+			
+			let position = relation(son)(dad)
+			
+			let posBackUp = son[position];			
+			son[position] = dad;
+			
+			
+			let sonL = son.left;
+			let dadL = dad.left;
+			if (dad.left != null && !this.isEvenOneEqual(dad.left.identity, son.identity)) {			
+				dadL.parent = son;
+				son.left = dadL;							
+				dad.left = sonL;
+				
+			}
+
+			let sonR = son.right;
+			let dadR = dad.right;			
+			if (dad.right != null && !this.isEvenOneEqual(dad.right.identity, son.identity)) {				
+				dadR.parent = son;
+				son.right = dadR;							
+				dad.right = sonR;
+				
+				
+			}
+			
+			//posBackUp.parent = dad;
+			dad[position] = posBackUp;
+			if (dad[position] != null) {
+				dad[position].parent = dad;
+			}
+			
+			if (grand) {
+				let positionGrand = relation(dad)(grand);
+				//console.log(positionGrand);
+			
+				if (grand[positionGrand] != null) {
+					grand[positionGrand] = son;				
+				}
+			
+			}
+			
+			
+			//console.log(grand);
+			//console.log('------');
+
+
+		}
 	}
 }
 
